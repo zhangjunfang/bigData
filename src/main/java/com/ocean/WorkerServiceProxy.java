@@ -2,10 +2,11 @@ package com.ocean;
 
 import java.rmi.RemoteException;
 
+import com.ocean.exception.RecallException;
 import com.ocean.util.LogUtil;
 
 public class WorkerServiceProxy extends PoolExector {
-	Worker wk;
+	protected Worker wk;
 	private RecallException rx;
 	private static boolean InetFlag = true;
 	private String host = null;

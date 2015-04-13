@@ -2,6 +2,7 @@ package com.ocean;
 
 import java.net.URI;
 
+import com.ocean.exception.FileException;
 import com.ocean.util.LogUtil;
 
 public class FttpMigrantWorker extends MigrantWorker {

@@ -1,6 +1,7 @@
 package com.ocean;
 
 import com.ocean.CoolHashMap.CoolKeySet;
+import com.ocean.exception.CoolHashException;
 
 @SuppressWarnings("rawtypes")
 public interface CoolHash {

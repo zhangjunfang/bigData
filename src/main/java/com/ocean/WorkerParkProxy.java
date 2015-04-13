@@ -1,5 +1,7 @@
 package com.ocean;
 
+import com.ocean.exception.RecallException;
+
 final public class WorkerParkProxy {
 	private String domainnodekey;
 	private RecallException rx;

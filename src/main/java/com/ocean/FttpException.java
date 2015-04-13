@@ -4,6 +4,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.io.FileNotFoundException;
 
+import com.ocean.exception.FileException;
+
 public class FttpException extends FileException {
 	/**
 	 * 

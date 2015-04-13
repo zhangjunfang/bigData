@@ -2,6 +2,9 @@ package com.ocean;
 
 import java.rmi.RemoteException;
 
+import com.ocean.common.exception.ClosetoOverException;
+import com.ocean.exception.LeaderException;
+
 public interface Park extends ParkActive {
 	// public <T extends java.io.Serializable> ObjValue create(String domain,
 	// String node, T obj, String sessionid, int auth, boolean heartbeat) throws

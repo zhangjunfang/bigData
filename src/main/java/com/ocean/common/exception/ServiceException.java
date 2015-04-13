@@ -1,9 +1,7 @@
-package com.ocean;
+package com.ocean.common.exception;
 
 public class ServiceException extends Exception {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 385796972126486327L;
 
 	public ServiceException() {

@@ -1,5 +1,7 @@
 package com.ocean;
 
+import com.ocean.exception.RecallException;
+
 public class ParkPatternBean {
 	String domain, node;
 	WareHouse inhouse, outhouse;

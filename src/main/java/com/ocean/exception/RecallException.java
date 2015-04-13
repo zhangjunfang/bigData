@@ -1,11 +1,11 @@
-package com.ocean;
+package com.ocean.exception;
 
+import com.ocean.WareHouse;
+import com.ocean.common.exception.ServiceException;
 import com.ocean.util.LogUtil;
 
 public class RecallException extends ServiceException {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1051368536794672562L;
 	private boolean recall;
 

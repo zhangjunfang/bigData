@@ -1,13 +1,12 @@
-package com.ocean;
+package com.ocean.common.exception;
 
 import java.text.DecimalFormat;
 
+import com.ocean.ConfigContext;
 import com.ocean.util.LogUtil;
 
 public class ClosetoOverException extends ServiceException {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -8451181860479661794L;
 	private double tm, fm, mm;
 	private static double safeMemoryPer = Double.parseDouble(ConfigContext

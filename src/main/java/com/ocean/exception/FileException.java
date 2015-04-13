@@ -1,4 +1,7 @@
-package com.ocean;
+package com.ocean.exception;
+
+import com.ocean.common.exception.ServiceException;
+
 
 public class FileException extends ServiceException {
 	/**

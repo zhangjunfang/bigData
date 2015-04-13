@@ -1,7 +1,10 @@
-package com.ocean;
+package com.ocean.exception;
 
 import java.util.regex.Pattern;
 
+import com.ocean.ConstantBit;
+import com.ocean.DumpAdapter;
+import com.ocean.common.exception.ServiceException;
 import com.ocean.util.LogUtil;
 
 public class CoolHashException extends ServiceException {
@@ -30,11 +33,11 @@ public class CoolHashException extends ServiceException {
 		super(cause);
 	}
 
-	<T> String checkTargetLog(Class<T> value) {
+	public <T> String checkTargetLog(Class<T> value) {
 		return "this class type cant be provided " + value;
 	}
 
-	<T> void checkTargetMatch(Class<T> value) throws CoolHashException {
+	public <T> void checkTargetMatch(Class<T> value) throws CoolHashException {
 		try {
 			ConstantBit.Target.valueOf(value.getSimpleName().toUpperCase());
 		} catch (Exception e) {
@@ -42,7 +45,7 @@ public class CoolHashException extends ServiceException {
 		}
 	}
 
-	void checking(String str) throws CoolHashException {
+	public void checking(String str) throws CoolHashException {
 		if (str == null || pk.matcher(str).matches() == false)
 			throw new CoolHashException(
 					"[Syntax Error] the keyname '"
@@ -54,13 +57,13 @@ public class CoolHashException extends ServiceException {
 
 	}
 
-	void checking(byte[] bts) throws CoolHashException {
+	public void checking(byte[] bts) throws CoolHashException {
 		if (bts == null || bts.length <= 1 || bts.length > DumpAdapter.mv)
 			throw new CoolHashException(
 					"[Value Error] value be null or size of the value exceed");
 	}
 
-	boolean checkKey(String key) {
+	public boolean checkKey(String key) {
 		try {
 			checking(key);
 		} catch (Exception ex) {
@@ -70,7 +73,7 @@ public class CoolHashException extends ServiceException {
 		return true;
 	}
 
-	boolean checkWild(String str) {
+	public boolean checkWild(String str) {
 		if (str == null || pkw.matcher(str).matches() == false) {
 			LogUtil.fail(
 					"[CoolHashException]",
@@ -83,7 +86,7 @@ public class CoolHashException extends ServiceException {
 		return true;
 	}
 
-	boolean checkKeyValue(Object key, Object value) {
+	public boolean checkKeyValue(Object key, Object value) {
 		try {
 			checkingType(key, value);
 			checking((String) key, (byte[]) value);
@@ -94,7 +97,7 @@ public class CoolHashException extends ServiceException {
 		return true;
 	}
 
-	void checkingType(Object key, Object value) throws CoolHashException {
+	public void checkingType(Object key, Object value) throws CoolHashException {
 		if (key == null || value == null)
 			throw new CoolHashException(
 					"[NullPointerException] key or value cant be null!");
@@ -104,7 +107,7 @@ public class CoolHashException extends ServiceException {
 					"[ClassCastException] key type or value type error!");
 	}
 
-	void checkingRegex(String regex) throws CoolHashException {
+	public void checkingRegex(String regex) throws CoolHashException {
 		try {
 			Pattern.compile(regex);
 		} catch (Exception e) {
@@ -112,40 +115,40 @@ public class CoolHashException extends ServiceException {
 		}
 	}
 
-	void exceedException() {
+	public void exceedException() {
 		LogUtil.fail("[CoolHashException]", "[ExceedException]",
 				"the size of the key/value exceed!");
 	}
 
-	void checking(String str, byte[] bts) throws CoolHashException {
+	public void checking(String str, byte[] bts) throws CoolHashException {
 		checking(str);
 		checking(bts);
 	}
 
-	void checkKeyPoint(String keyPoint) throws CoolHashException {
+	public void checkKeyPoint(String keyPoint) throws CoolHashException {
 		checking(keyPoint);
 		if (!keyPoint.endsWith("\u002E\u006B\u0065\u0079"))
 			throw new CoolHashException(
 					"[Syntax Error] keypoint must be end with .key");
 	}
 
-	void pointLoopException() {
+	public void pointLoopException() {
 		LogUtil.fail(
 				"[CoolHashException]",
 				"[PointLoopException]",
 				"key point loop be canceled, return point key string maybe cause unpredictable data format conversion error!");
 	}
 
-	void rollback() {
+	public void rollback() {
 		LogUtil.fail("[CoolHashException]", "[TransactionException]",
 				"something exception, transaction roll back");
 	}
 
-	void commitException(Exception ex) {
+	public void commitException(Exception ex) {
 		LogUtil.fail("[CoolHashException]", "[CommitException]", ex.toString());
 	}
 
-	void rollbackException(Exception ex) {
+	public  void rollbackException(Exception ex) {
 		LogUtil.info("[CoolHashException]", "[RollbackException]",
 				"roll back failed", ex);
 	}

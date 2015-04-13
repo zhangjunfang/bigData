@@ -1,4 +1,4 @@
-package com.ocean;
+package com.ocean.exception;
 
 public class LeaderException extends Exception {
 	/**

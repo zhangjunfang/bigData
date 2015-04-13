@@ -21,9 +21,9 @@ import com.ocean.util.LogUtil;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public final class ObjectBytes // nopub
 {
-	static private char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+	private static char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
 			.toCharArray();
-	static private byte[] codes = new byte[256];
+	private static byte[] codes = new byte[256];
 	static {
 		for (int i = 0; i < 256; i++)
 			codes[i] = -1;
@@ -37,7 +37,7 @@ public final class ObjectBytes // nopub
 		codes['/'] = 63;
 	}
 
-	static byte[] toBytes(Object o) {
+	public static byte[] toBytes(Object o) {
 		byte[] gbt = null;
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -55,7 +55,7 @@ public final class ObjectBytes // nopub
 		return gbt;
 	}
 
-	static byte[] getByteFromIs(InputStream gis, boolean GZIPFlag) {
+	public static byte[] getByteFromIs(InputStream gis, boolean GZIPFlag) {
 		byte[] gbt = null;
 		try {
 			BufferedInputStream is = new BufferedInputStream(gis);
@@ -79,7 +79,7 @@ public final class ObjectBytes // nopub
 		return gbt;
 	}
 
-	static Object toObject(byte[] bts) {
+	public static Object toObject(byte[] bts) {
 		ByteArrayOutputStream sbos = new ByteArrayOutputStream();
 		setByteToOs(bts, sbos, true);
 		byte[] unzipbts = sbos.toByteArray();
@@ -97,7 +97,7 @@ public final class ObjectBytes // nopub
 		return obj;
 	}
 
-	static void setByteToOs(byte[] sbt, OutputStream sos, boolean GZIPFlag) {
+	public static void setByteToOs(byte[] sbt, OutputStream sos, boolean GZIPFlag) {
 		try {
 			ByteArrayInputStream bais = new ByteArrayInputStream(sbt);
 			InputStream gzin = GZIPFlag ? (new GZIPInputStream(bais)) : bais;
@@ -119,23 +119,23 @@ public final class ObjectBytes // nopub
 		}
 	}
 
-	static String encode(String data) {
+	public static String encode(String data) {
 		return new String(encode(data.getBytes()));
 	}
 
-	static String encodeReplace(String data) {
+	public static String encodeReplace(String data) {
 		return encode(data, "\u003D", "\u005F");
 	}
 
-	static String encode(String data, String ostr, String rplstr) {
+	public static String encode(String data, String ostr, String rplstr) {
 		return encode(data).replaceAll(ostr, rplstr);
 	}
 
-	static String encodeurl(String data) throws UnsupportedEncodingException {
+	public static String encodeurl(String data) throws UnsupportedEncodingException {
 		return getUrlString(encode(data));
 	}
 
-	static char[] encode(byte[] data) {
+	public static char[] encode(byte[] data) {
 		char[] out = new char[((data.length + 2) / 3) * 4];
 		for (int i = 0, index = 0; i < data.length; i += 3, index += 4) {
 			boolean quad = false, trip = false;
@@ -161,11 +161,11 @@ public final class ObjectBytes // nopub
 		return out;
 	}
 
-	static String decode(String data) {
+	public static String decode(String data) {
 		return new String(decode(data.toCharArray()));
 	}
 
-	static String decodeReplace(String data) {
+	public static String decodeReplace(String data) {
 		return decode(data, "\u005F", "\u003D");
 	}
 

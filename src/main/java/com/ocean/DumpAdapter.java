@@ -13,37 +13,37 @@ public class DumpAdapter extends FileAdapter {
 	 * 
 	 */
 	private static final long serialVersionUID = -1186092149505957176L;
-	final static long mk = ConfigContext.getKEYLENTH();
-	final static long mv = m(ConfigContext.getVALUELENGTH()) + ConstBit[8];
-	final static long ms = mk + m(ConfigContext.getREGIONLENGTH())
+	public final static long mk = ConfigContext.getKEYLENTH();
+	public final static long mv = m(ConfigContext.getVALUELENGTH()) + ConstBit[8];
+	public final static long ms = mk + m(ConfigContext.getREGIONLENGTH())
 			+ ConstBit[8] + ConstBit[5];
-	final static long ml = m(ConfigContext.getLOADLENGTH());
-	final static String src = ConfigContext.getDATAROOT();
-	static boolean windows = BeanContext.getWindows();
+	public final static long ml = m(ConfigContext.getLOADLENGTH());
+	public final static String src = ConfigContext.getDATAROOT();
+	public static boolean windows = BeanContext.getWindows();
 
-	DumpAdapter(String dump) {
+	public DumpAdapter(String dump) {
 		super(dump);
 	}
 
-	DumpAdapter(String pdump, String dump) {
+	public DumpAdapter(String pdump, String dump) {
 		super(pdump, dump);
 	}
 
-	DumpAdapter(String dump, int i) {
+	public DumpAdapter(String dump, int i) {
 		// super(i>0?dump.substring(0,dump.length()-1)+i:dump);
 		this(new DumpAdapter(dump), i);
 	}
 
-	DumpAdapter(DumpAdapter dump, int i) {
+	public DumpAdapter(DumpAdapter dump, int i) {
 		super(i > 0 ? dump.getFirstMeta() + i : dump.toString());
 	}
 
-	String[] getGroupMeta(String k) {
+	public String[] getGroupMeta(String k) {
 		DumpAdapter da = getKeyMeta(k);
 		return da.getGroupMeta();
 	}
 
-	String[] getGroupMeta() {
+	public String[] getGroupMeta() {
 		ArrayList<String> al = new ArrayList<String>();
 		File f = this;
 		int i = 0;
@@ -55,15 +55,15 @@ public class DumpAdapter extends FileAdapter {
 		return al.toArray(new String[0]);
 	}
 
-	String getFirstMeta() {
+	public String getFirstMeta() {
 		return getParentFile() + separator + getFirstMetaName();
 	}
 
-	String getFirstMetaName() {
+	public String getFirstMetaName() {
 		return getName().substring(0, 3);
 	}
 
-	WareHouse getKeyMetaStr(String[] ks) {
+	public WareHouse getKeyMetaStr(String[] ks) {
 		WareHouse dm = new WareHouse();
 		for (String k : ks) {
 			String fa = getKeyMeta(k).toString();
@@ -75,7 +75,7 @@ public class DumpAdapter extends FileAdapter {
 		return dm;
 	}
 
-	WareHouse getKeyMeta(String[] ks) {
+	public WareHouse getKeyMeta(String[] ks) {
 		WareHouse dm = new WareHouse();
 		for (int i = 0; i < ks.length; i++) {
 			String da = getKeyMeta(ks[i]).toString();

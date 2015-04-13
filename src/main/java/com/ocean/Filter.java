@@ -3,6 +3,8 @@ package com.ocean;
 import java.util.Date;
 import java.lang.reflect.Array;
 
+import com.ocean.exception.CoolHashException;
+
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public interface Filter<T, S> extends CoolHashBase {
 	T getFilterKey();

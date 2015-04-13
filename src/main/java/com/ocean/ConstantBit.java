@@ -5,15 +5,15 @@ import java.io.Serializable;
 
 import com.ocean.util.LogUtil;
 
-interface ConstantBit<T> extends CoolHashBase {
-	byte[] getBytes(T value);
+public interface ConstantBit<T> extends CoolHashBase {
+	public byte[] getBytes(T value);
 
-	T getObject(byte[] bts);
+	public T getObject(byte[] bts);
 
 	Target tg = Target.POINT;
 
 	@SuppressWarnings("rawtypes")
-	enum Target implements ConstantBit, Filter.Condition {
+	public  enum Target implements ConstantBit, Filter.Condition {
 		STRING(DumpAdapter.ConstBit[0], DumpAdapter.ConstBit[0]) {
 			@SuppressWarnings("unchecked")
 			@Override
@@ -169,7 +169,7 @@ interface ConstantBit<T> extends CoolHashBase {
 			}
 		};
 
-		static Target getTarget(byte codeKey) {
+		public static Target getTarget(byte codeKey) {
 			for (Target tg : Target.values())
 				if (tg.codeKey == codeKey)
 					return tg;
@@ -190,32 +190,32 @@ interface ConstantBit<T> extends CoolHashBase {
 			return null;
 		}
 
-		static <T> Target getTarget(Class<T> value) {
+		public static <T> Target getTarget(Class<T> value) {
 			return getTarget(value, false);
 		}
 
-		static <T> Target getTarget(T value) {
+		public static <T> Target getTarget(T value) {
 			Target tg = getTarget(value.getClass());
 			return tg;
 		}
 
-		static <T> Target getTargetMatch(Class<T> value) {
+		public static <T> Target getTargetMatch(Class<T> value) {
 			return getTarget(value, true);
 		}
 
 		@SuppressWarnings("unchecked")
-		static <T> byte[] getTargetBytes(T value) {
+		public static <T> byte[] getTargetBytes(T value) {
 			ConstantBit<T> cb = ConstantBit.Target.getTarget(value);
 			byte[] bts = cb.getBytes(value);
 			return bts;
 		}
 
-		static <T> T getTargetObject(byte[] bts) {
+		public static <T> T getTargetObject(byte[] bts) {
 			return getTargetObject(bts, null);
 		}
 
 		@SuppressWarnings("unchecked")
-		static <T> T getTargetObject(byte[] bts, Class<T> value) {
+		public  static <T> T getTargetObject(byte[] bts, Class<T> value) {
 			if (bts == null || bts.length == 0) {
 				return null;
 			} else {
@@ -243,7 +243,7 @@ interface ConstantBit<T> extends CoolHashBase {
 		int codeKey;
 		int codeValue;
 
-		Target(int codeKey, int codeValue) {
+		 Target(int codeKey, int codeValue) {
 			this.codeKey = codeKey;
 			this.codeValue = codeValue;
 		}

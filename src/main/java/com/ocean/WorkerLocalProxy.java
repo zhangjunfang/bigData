@@ -1,5 +1,6 @@
 package com.ocean;
 
+import com.ocean.exception.RecallException;
 import com.ocean.util.LogUtil;
 
 public class WorkerLocalProxy extends PoolExector {
